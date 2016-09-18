@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LOG_Game", "LOG_Game\LOG_Game.csproj", "{EA0831C8-979A-45F3-881A-8B351EBF86A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LODH_Game", "LOG_Game\LODH_Game.csproj", "{EA0831C8-979A-45F3-881A-8B351EBF86A9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity", "Entity\Entity.csproj", "{A3047865-8CA3-4F74-8079-E315E1C44BBA}"
 EndProject
