@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>刀塔英雄传奇</title>
+    <link href="css/index.css" rel="stylesheet" />
+    <link href="css/public.css" rel="stylesheet" />
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="js/indexTest.js"></script>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <div class="father">
+        <canvas id="canvas" width="1200" height="800"></canvas>
+    </div>
+    <div id="tips"></div>
+<script>
+    $.post("Test/Test", { state: 1 }, function(res) {
+        console.log(JSON.parse(res));
+    });
+    console.log();
+</script>
+</body>
+</html>
