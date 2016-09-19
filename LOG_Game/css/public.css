@@ -80,3 +80,7 @@ s, i, em {
     font-style: normal;
     text-decoration: none;
 }
+
+canvas {
+    cursor: url("../images/cursor.png"),pointer;
+}

@@ -15,6 +15,7 @@ function Human(x, y, width, height) {
     this.y = y || 0;
     this.width = width || 50;
     this.height = height || 50;
+    this.moveSpeed = 600 * (16 / 1000);
     this.animateImage = new Image();
     this.animateImage.src = "images/animate.png";
     var o = this;
@@ -55,6 +56,24 @@ function Human(x, y, width, height) {
 }
 Human.prototype.move = function (d) {
     this.direction = d;
+    switch (this.direction) {
+        case Direction.up:
+            this.y -= this.moveSpeed;
+            break;
+        case Direction.right:
+            this.x += this.moveSpeed;
+            break;
+        case Direction.down:
+            this.y += this.moveSpeed;
+            break;
+        case Direction.left:
+            this.x -= this.moveSpeed;
+            break;
+    }
+    this.x = this.x - map.x < 0 ? 0 : this.x;
+    this.y = this.y - map.x < 0 ? 0 : this.y;
+    this.x = this.x + this.width > map.width ? map.width - this.width : this.x;
+    this.y = this.y + this.height > map.height ? map.height - this.height : this.y;
     if (!this.currentAnimate) {
         return;
     }
@@ -74,7 +93,7 @@ Human.prototype.stopMove = function () {
     clearInterval(this.timer);
     this.timer = 0;
 }
-Human.prototype.render = function (context) {
+Human.prototype.render = function (context,map) {
     if (!this.isReady) {
         return;
     }
@@ -104,7 +123,11 @@ Human.prototype.render = function (context) {
     if (!this.isMoving) {
         this.currentAnimateIndex = 0;
     }
-    context.drawImage(this.animateImage, this.currentAnimate[this.currentAnimateIndex].x, this.currentAnimate[this.currentAnimateIndex].y, this.currentAnimate[this.currentAnimateIndex].width, this.currentAnimate[this.currentAnimateIndex].height, this.x, this.y, this.width, this.height);
+    if (map) {
+        context.drawImage(this.animateImage, this.currentAnimate[this.currentAnimateIndex].x, this.currentAnimate[this.currentAnimateIndex].y, this.currentAnimate[this.currentAnimateIndex].width, this.currentAnimate[this.currentAnimateIndex].height, this.x - map.x, this.y - map.y, this.width, this.height);
+    } else {
+        context.drawImage(this.animateImage, this.currentAnimate[this.currentAnimateIndex].x, this.currentAnimate[this.currentAnimateIndex].y, this.currentAnimate[this.currentAnimateIndex].width, this.currentAnimate[this.currentAnimateIndex].height, this.x, this.y, this.width, this.height);
+    }
 }
 
 var context;
@@ -171,8 +194,8 @@ function main() {
     update();
     ram(main);
     if (!context) { return; }
-    context.clearRect(0, 0, 1200, 800);
-    humen.render(context);
+    //context.clearRect(0, 0, 1200, 800);
+    humen.render(context,map);
 }
 main();
 
